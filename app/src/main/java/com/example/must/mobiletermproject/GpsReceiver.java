@@ -32,8 +32,8 @@ public class GpsReceiver implements LocationListener {
             /*double irtifa = location.getAltitude();
             double hiz = location.getSpeed();*/
 
-            m.setLatitude("Enlem:"+String.valueOf(enlem));
-            m.setLongitude("Enlem:" + String.valueOf(boylam));
+            m.setLatitude(String.valueOf(enlem));
+            m.setLongitude(String.valueOf(boylam));
         }
         else{
             Toast.makeText(context,"Konum Bilgisi Alınamıyor", Toast.LENGTH_SHORT).show();

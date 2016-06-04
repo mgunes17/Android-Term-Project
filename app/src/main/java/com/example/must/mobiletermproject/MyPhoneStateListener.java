@@ -27,7 +27,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
         strength = signalStrength.getGsmSignalStrength();
         strength = (2 * strength) - 113; // -> dBm
 
-        m.setSignal("Sinyal Gücü:"+String.valueOf(strength));
+        m.setSignal(String.valueOf(strength));
     }
 
     public int getSignalStrength(){

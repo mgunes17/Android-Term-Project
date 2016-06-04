@@ -1,12 +1,13 @@
 package com.example.must.mobiletermproject.database;
 
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by must on 03.06.2016.
  */
-public class Record {
+public class Record implements Serializable{
     //kaydedilecek özellikler
     private double enlem;
     private double boylam;
