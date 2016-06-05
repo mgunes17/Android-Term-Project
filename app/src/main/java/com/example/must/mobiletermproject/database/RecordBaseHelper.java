@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +40,15 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
     }
 
     public long insert(Record record){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(RecordDBSchema.RecordTable.Cols.TIME, String.valueOf(record.getZaman()));
+        values.put(RecordDBSchema.RecordTable.Cols.TIME, df.format(record.getZaman()).toString());
         values.put(RecordDBSchema.RecordTable.Cols.OPERATOR_NAME, record.getOperatorAdi());
         values.put(RecordDBSchema.RecordTable.Cols.STRENGTH, record.getSinyalGucu());
-        values.put(RecordDBSchema.RecordTable.Cols.LATITUTE, record.getEnlem());
-        values.put(RecordDBSchema.RecordTable.Cols.LONGITUTE, record.getBoylam());
+        values.put(RecordDBSchema.RecordTable.Cols.LATITUDE, String.valueOf(record.getEnlem()));
+        values.put(RecordDBSchema.RecordTable.Cols.LONGITUDE, String.valueOf(record.getBoylam()));
 
         long r = db.insert(RecordDBSchema.RecordTable.name, null, values);
         db.close();
@@ -52,7 +56,9 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
         return r;
     }
 
-    public List<Record> read(){
+    public List<Record> read() throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date;
         String query = "select * from record";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -62,7 +68,8 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Record r = new Record();
-                //r.setZaman(new Date(cursor.getString(0)));
+                date =  df.parse(cursor.getString(0).toString());
+                r.setZaman(date);
                 r.setOperatorAdi(cursor.getString(1));
                 r.setSinyalGucu(Integer.valueOf(cursor.getString(2)));
                 r.setEnlem(Double.valueOf(cursor.getString(3)));

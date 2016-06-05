@@ -9,8 +9,8 @@ public class RecordDBSchema {
 
         public static final class Cols{
             public static final String STRENGTH = "strength"; //sinyal gücü
-            public static final String LATITUTE = "latitute"; //enlem
-            public static final String LONGITUTE = "longitute"; //boylam
+            public static final String LATITUDE = "latitude"; //enlem
+            public static final String LONGITUDE = "longitude"; //boylam
             public static final String OPERATOR_NAME = "operatorName";
             public static final String TIME = "time";
 
