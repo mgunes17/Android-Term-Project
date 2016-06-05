@@ -190,9 +190,16 @@ public class StartActivity extends AppCompatActivity {
 
                     record = new Record();
                     record.setOperatorAdi(operatorName.getText().toString());
-                    record.setSinyalGucu(Integer.parseInt(signal.getText().toString()));
-                    record.setEnlem(Double.parseDouble(latitude.getText().toString()));
-                    record.setBoylam(Double.parseDouble(longitude.getText().toString()));
+
+                    if(signal.getText().toString().length() != 0)
+                        record.setSinyalGucu(Integer.parseInt(signal.getText().toString()));
+
+                    if(latitude.getText().toString().length() != 0)
+                        record.setEnlem(Double.parseDouble(latitude.getText().toString()));
+
+                    if(longitude.getText().toString().length() != 0)
+                        record.setBoylam(Double.parseDouble(longitude.getText().toString()));
+
                     record.setZaman(new Date());
                     addRecord(record);
 

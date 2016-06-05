@@ -69,5 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(MainActivity.this, DeleteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

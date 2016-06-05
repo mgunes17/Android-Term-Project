@@ -80,5 +80,12 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
         }
 
         return list;
+
+    }
+
+    public void deleteNoLocation(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("record", "latitude=0.0", null);
+        db.close();
     }
 }

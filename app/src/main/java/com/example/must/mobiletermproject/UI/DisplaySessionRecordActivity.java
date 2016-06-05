@@ -68,7 +68,8 @@ public class DisplaySessionRecordActivity extends AppCompatActivity {
         int max = -113;
 
         for(int i=0; i<recordList.getRecordList().size(); i++){
-            if(recordList.getRecordList().get(i).getSinyalGucu() > max){
+            if(recordList.getRecordList().get(i).getSinyalGucu() > max &&
+                    recordList.getRecordList().get(i).getSinyalGucu() != 0){
                 max = recordList.getRecordList().get(i).getSinyalGucu();
             }
         }
