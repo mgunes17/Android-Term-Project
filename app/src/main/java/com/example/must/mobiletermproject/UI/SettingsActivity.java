@@ -14,6 +14,7 @@ import com.example.must.mobiletermproject.R;
 public class SettingsActivity extends AppCompatActivity {
     private EditText threshold;
     private EditText recordCount;
+    private EditText recordDuration;
     private Button saveSettings;
 
     @Override
@@ -28,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void initialize(){
         threshold = (EditText) findViewById(R.id.edtThreshold);
         recordCount = (EditText) findViewById(R.id.edtRecordNumber);
+        recordDuration = (EditText) findViewById(R.id.edtRecordDuration);
         saveSettings = (Button) findViewById(R.id.btnSaveSettings);
     }
 
@@ -35,32 +37,35 @@ public class SettingsActivity extends AppCompatActivity {
         saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    int thresholdValue = Integer.valueOf(threshold.getText().toString());
-                    int recordCountValue = Integer.valueOf(recordCount.getText().toString());
+            try{
+                int thresholdValue = Integer.valueOf(threshold.getText().toString());
+                int recordCountValue = Integer.valueOf(recordCount.getText().toString());
+                int recordDurationValue = Integer.valueOf(recordDuration.getText().toString());
 
-                    if(thresholdValue<0 || thresholdValue > 113){
-                        threshold.requestFocus();
-                        threshold.setError("Lütfen 0-113 aralığında bir threshold değeri giriniz.");
-                    }
-
-                    SharedPreferences sp = SettingsActivity.this.getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putInt("threshold", thresholdValue);
-                    editor.putInt("recordCount", recordCountValue);
-
-                    editor.commit();
-
-                    Toast.makeText(SettingsActivity.this, "Ayarlar kaydedildi", Toast.LENGTH_SHORT)
-                            .show();
-
-                    threshold.setText("");
-                    recordCount.setText("");
+                if(thresholdValue<0 || thresholdValue > 113){
+                    threshold.requestFocus();
+                    threshold.setError("Lütfen 0-113 aralığında bir threshold değeri giriniz.");
                 }
-                catch (Exception e){
-                    Toast.makeText(SettingsActivity.this, "Lütfen geçerli değerler girin", Toast.LENGTH_SHORT)
-                            .show();
-                }
+
+                SharedPreferences sp = SettingsActivity.this.getSharedPreferences("ayarlar", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("threshold", thresholdValue);
+                editor.putInt("recordCount", recordCountValue);
+                editor.putInt("recordDuration", recordDurationValue);
+
+                editor.commit();
+
+                Toast.makeText(SettingsActivity.this, "Ayarlar kaydedildi", Toast.LENGTH_SHORT)
+                        .show();
+
+                threshold.setText("");
+                recordCount.setText("");
+                recordDuration.setText("");
+            }
+            catch (Exception e){
+                Toast.makeText(SettingsActivity.this, "Lütfen geçerli değerler girin", Toast.LENGTH_SHORT)
+                        .show();
+            }
 
             }
         });

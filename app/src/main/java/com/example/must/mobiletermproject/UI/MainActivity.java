@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button displayData;
     private Button settings;
     private Button exit;
+    private Button delete;
     private Intent intent;
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         startMode = (Button) findViewById(R.id.btnStartMode);
         displayData = (Button) findViewById(R.id.btnDisplayData);
         settings = (Button) findViewById(R.id.btnSettings);
+        delete = (Button) findViewById(R.id.btnDeleteData);
         exit = (Button) findViewById(R.id.btnExit);
     }
 
@@ -56,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        displayData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(MainActivity.this, DisplayDataFilterActivity.class);
                 startActivity(intent);
             }
         });

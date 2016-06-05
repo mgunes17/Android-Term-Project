@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationListener;
@@ -25,7 +26,6 @@ import com.example.must.mobiletermproject.R;
 import com.example.must.mobiletermproject.database.Record;
 import com.example.must.mobiletermproject.database.RecordList;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +39,7 @@ public class StartActivity extends AppCompatActivity {
     private Button display;
     private LocationListener receiver;
     private List<Record> recordList;
+    private SharedPreferences sp;
     TelephonyManager mng;
     LocationManager lmng;
     MyPhoneStateListener pslistener;
@@ -99,6 +100,8 @@ public class StartActivity extends AppCompatActivity {
         receiver = new GpsReceiver(StartActivity.this, StartActivity.this);
         recordList = new ArrayList<>();
         display = (Button) findViewById(R.id.btnDisplaySessionSave);
+        //display.setVisibility(Button.INVISIBLE);
+        sp = this.getSharedPreferences("ayarlar", Context.MODE_PRIVATE);
     }
 
     private void buttonHandler() {
@@ -138,7 +141,7 @@ public class StartActivity extends AppCompatActivity {
         display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, DisplayRecordActivity.class);
+                Intent intent = new Intent(StartActivity.this, DisplaySessionRecordActivity.class);
                 Bundle bundle = new Bundle();
                 RecordList rl = new RecordList();
                 rl.setRecordList(recordList);
@@ -151,12 +154,19 @@ public class StartActivity extends AppCompatActivity {
 
     public class CreateRecordList extends AsyncTask<Void, Integer, Void> {
         private ProgressDialog dialog;
-        private int duration = 1;
-        private int recordCount = 5;
+        private int duration;
+        private int recordCount;
 
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
+
+            int defaultDuration = 1;
+            duration = sp.getInt("recordDuration", defaultDuration);
+            int defaultRecordCount = 10;
+            recordCount = sp.getInt("recordCount", defaultRecordCount);
+            //recordList = new ArrayList<>();
+
             Toast.makeText(StartActivity.this, "Kayıt başladı", Toast.LENGTH_SHORT)
                     .show();
             dialog = new ProgressDialog(StartActivity.this);
@@ -167,13 +177,12 @@ public class StartActivity extends AppCompatActivity {
 
         }
 
-
         @Override
         protected Void doInBackground(Void... params){
 
             // add recordList ile activity deki listeyi doldur
             Record record;
-            //long time = duration * 1000;
+            long time = duration * 1000;
 
             for(int i = 0; i<recordCount; i++){
                 try{
@@ -182,12 +191,12 @@ public class StartActivity extends AppCompatActivity {
                     record = new Record();
                     record.setOperatorAdi(operatorName.getText().toString());
                     record.setSinyalGucu(Integer.parseInt(signal.getText().toString()));
-                    //record.setEnlem(Double.valueOf(activity.getLatitude()));
-                    // record.setBoylam(Double.valueOf(activity.getLongitude()));
+                    record.setEnlem(Double.parseDouble(latitude.getText().toString()));
+                    record.setBoylam(Double.parseDouble(longitude.getText().toString()));
                     record.setZaman(new Date());
                     addRecord(record);
 
-                    Thread.sleep(1000);
+                    Thread.sleep(time);
                 }
                 catch (Exception e){
                     record = new Record();
@@ -213,7 +222,7 @@ public class StartActivity extends AppCompatActivity {
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
             dialog.dismiss();
-
+            //display.setVisibility(Button.VISIBLE);
             Toast.makeText(StartActivity.this, "Başarıyla tamamlandı", Toast.LENGTH_SHORT)
                     .show();
         }

@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".UI.DisplayRecordActivity" >
         </activity>
+        <activity android:name=".UI.DisplaySessionRecordActivity" >
+        </activity>
+        <activity android:name=".UI.DisplayDataFilterActivity" >
+        </activity>
     </application>
 
 </manifest>

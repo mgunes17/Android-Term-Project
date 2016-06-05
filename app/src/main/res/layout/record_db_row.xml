@@ -4,6 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Operatör Adı: " />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtDBOperatorName" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/txtSessionSignal" />
+            android:id="@+id/txtDBSignal" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/txtSessionLatitude" />
+            android:id="@+id/txtDBLatitude" />
 
     </LinearLayout>
 
@@ -57,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/txtSessionLongitude" />
+            android:id="@+id/txtDBLongitude" />
 
     </LinearLayout>
 </LinearLayout>
