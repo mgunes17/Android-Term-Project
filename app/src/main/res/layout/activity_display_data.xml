@@ -11,19 +11,104 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hangi Verileri Görmek İstersiniz?"
+        android:text="Lütfen Seçiminizi Yapınız"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:text="Görünüm Tipi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rdoViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rdoListView"
+            android:text="ListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rdoMap"
+            android:text="Harita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtSortCriteria"
+        android:text="Sıralama Ölçütü"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rdoSortCriteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:text="Sinyal Gücü Artan"
+            android:id="@+id/rdoSignalStrengthInc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:text="Sinyal Gücü Azalan"
+            android:id="@+id/rdoSignalStrengthDec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:text="Tarih Artan"
+            android:id="@+id/rdoSDateInc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:text="Tarih Azalan"
+            android:id="@+id/rdoDateDec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <TextView
+        android:text="Operatör Seçimi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rdoOperator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rdoAllOperator"
+            android:text="Tüm Operatörler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rdoVodafone"
+            android:text="Vodafone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rdoTurkcell"
+            android:text="Turkcell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
     <Button
-        android:id="@+id/btnDisplayAllData"
+        android:id="@+id/btnSee"
         android:text="Tüm Verileri Gör"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnFilterData"
-        android:text="Filtreleme Seçenekleri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </LinearLayout>

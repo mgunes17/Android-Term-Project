@@ -83,6 +83,33 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<Record> readOperator(String operator) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date;
+        String query = "select * from record where operatorName='"+operator+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        List<Record> list = new ArrayList<Record>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                Record r = new Record();
+                date =  df.parse(cursor.getString(0).toString());
+                r.setZaman(date);
+                r.setOperatorAdi(cursor.getString(1));
+                r.setSinyalGucu(Integer.valueOf(cursor.getString(2)));
+                r.setEnlem(Double.valueOf(cursor.getString(3)));
+                r.setBoylam(Double.valueOf(cursor.getString(4)));
+
+                list.add(r);
+            } while (cursor.moveToNext());
+        }
+
+        return list;
+
+    }
+
     public void deleteNoLocation(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("record", "latitude=0.0", null);

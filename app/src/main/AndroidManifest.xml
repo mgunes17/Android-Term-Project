@@ -16,6 +16,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
+        <!-- Harita verisini indirebilmek için izinler -->
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.INTERNET" />
+
+        <!-- Cihazdan Google Servislerine erişmek için izin -->
+        <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+        <!-- İndirilenlerin tutulması için izinler -->
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
         <activity android:name=".UI.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +45,22 @@
         <activity android:name=".UI.DisplayDataFilterActivity" >
         </activity>
         <activity android:name=".UI.DeleteActivity" >
+        </activity>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBV4sBd8k9YJTwsD2ZJxA3MpNRawrxc5q0" />
+
+        <activity
+            android:name=".UI.MapActivity"
+            android:label="@string/title_activity_map" >
         </activity>
     </application>
 

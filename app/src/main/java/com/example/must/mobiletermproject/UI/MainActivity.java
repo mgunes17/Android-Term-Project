@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         buttonHandler();
+
     }
 
     private void initialize(){
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         startMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //intent = new Intent(MainActivity.this, StartActivity.class);
                 intent = new Intent(MainActivity.this, StartActivity.class);
                 startActivity(intent);
             }
