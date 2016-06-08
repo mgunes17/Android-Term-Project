@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.example.must.mobiletermproject.database.Record;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -32,12 +35,17 @@ public class RecordDBAdapter  extends BaseAdapter {
         TextView signal = (TextView) satirView.findViewById(R.id.txtDBSignal);
         TextView latitude = (TextView) satirView.findViewById(R.id.txtDBLatitude);
         TextView longitude = (TextView) satirView.findViewById(R.id.txtDBLongitude);
+        TextView date = (TextView) satirView.findViewById(R.id.txtDBDate);
 
         Record record = recordList.get(position);
         signal.setText("  "+record.getSinyalGucu());
         latitude.setText("  "+record.getEnlem());
         longitude.setText("  "+record.getBoylam());
         operator.setText(" "+record.getOperatorAdi());
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        date.setText(" "+df.format(record.getZaman()));
+
 
         return satirView;
     }

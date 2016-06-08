@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.PreparedStatement;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -83,10 +84,22 @@ public class RecordBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<Record> readOperator(String operator) throws ParseException {
+    public List<Record> readOperator(String operator, int threshold) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date;
         String query = "select * from record where operatorName='"+operator+"'";
+
+        if(threshold == 0){
+            query = "select * from record where operatorName='"+operator+"'";
+        }
+        else if(threshold > 0){
+            query = "select * from record where operatorName='"+operator+"' and strength > threshold" ;
+        }
+        else{
+            query = "select * from record where operatorName='"+operator+"' and strength < threshold" ;
+        }
+
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 

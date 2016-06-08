@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context="com.example.must.mobiletermproject.UI.DisplayDataFilterActivity">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,6 +48,12 @@
         android:id="@+id/rdoSortCriteria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+        <RadioButton
+            android:text="Sıralama Yok"
+            android:id="@+id/rdoNoSorting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <RadioButton
             android:text="Sinyal Gücü Artan"
@@ -105,9 +110,38 @@
             android:layout_height="wrap_content" />
     </RadioGroup>
 
+    <TextView
+        android:text="Threshol Değeri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rdoThreshold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rdoNoThreshold"
+            android:text="Kullanma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rdoThresholdAbove"
+            android:text="Üstündeki değerler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rdoThresholdUnder"
+            android:text="Altındaki Değer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnSee"
-        android:text="Tüm Verileri Gör"
+        android:text="Verileri Gör"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
